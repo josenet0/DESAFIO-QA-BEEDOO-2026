@@ -1,46 +1,146 @@
-DESAFIO QA - BEEDOO 2026
-Objetivo da aplicação
-O projeto foi desenvolvido para facilitar o dia a dia na gestão educacional, permitindo o cadastro, a visualização e o gerenciamento completo de cursos de forma centralizada.
+# DESAFIO QA - BEEDOO 2026
 
-Fluxos principais
-Durante a fase de exploração, foquei nos pilares que sustentam a operação do sistema:
+## Aplicação analisada
+https://creative-sherbet-a51eac.netlify.app/
 
-Cadastro de curso: A porta de entrada das informações.
+---
 
-Listagem de cursos: Onde o usuário gerencia o catálogo existente.
+# Objetivo da aplicação
 
-Exclusão de cursos: O controle de limpeza e manutenção da base.
+A aplicação tem como objetivo permitir o gerenciamento de cursos, possibilitando que usuários cadastrem, visualizem e excluam cursos dentro do sistema.
 
-Pontos críticos para teste
-Identifiquei alguns "nós" do sistema que exigiram uma atenção especial para garantir que nada passe despercebido:
+Por meio do sistema é possível registrar cursos com informações como nome, descrição, datas, número de vagas, modalidade e link (quando aplicável).
 
-Campos obrigatórios: Garantir que o sistema não aceite dados incompletos.
+---
 
-Consistência de datas: Validar se os prazos fazem sentido (evitar datas retroativas ou lógicas impossíveis).
+# Fluxos principais identificados
 
-Controle de vagas: Testar os limites numéricos para evitar inconsistências no preenchimento.
+Durante a exploração da aplicação foram identificados os seguintes fluxos principais:
 
-Fidelidade na listagem: Confirmar se o que foi salvo é exatamente o que o usuário visualiza na tela.
+### Cadastro de cursos
+Permite registrar novos cursos informando dados como:
 
-Estratégia de testes
-Para uma cobertura completa, a estratégia não se limitou apenas ao esperado. Trabalhei com:
+- Nome do curso
+- Descrição
+- Datas
+- Número de vagas
+- Modalidade (presencial ou online)
+- Link do curso (quando modalidade online)
 
-Fluxos positivos: Validando se o "caminho feliz" entrega o valor prometido.
+### Listagem de cursos
+Após o cadastro, os cursos são exibidos em uma lista onde o usuário pode visualizar os cursos existentes.
 
-Fluxos negativos: Forçando erros para ver como o sistema se recupera.
+### Exclusão de cursos
+A aplicação permite excluir cursos previamente cadastrados da listagem.
 
-Validação de campos: Testes de borda e tipos de dados.
+---
 
-Testes exploratórios: Aquela visão de usuário para encontrar comportamentos inesperados.
+# Análise inicial da aplicação
 
-Casos de teste
-Todos os cenários mapeados, com seus respectivos passos e resultados esperados, estão detalhados aqui:
---> [ADICIONAR LINK DA PLANILHA]
+Durante a exploração inicial, foram identificados alguns pontos críticos que merecem maior atenção durante os testes:
 
-Evidências
-Para dar transparência ao processo, organizei os prints e gravações das execuções neste link:
---> [ADICIONAR LINK DO DRIVE]
+- Validação de **campos obrigatórios**
+- Consistência entre **datas inicial e final**
+- Validação do **campo número de vagas**
+- Comportamento da **exclusão de cursos**
+- Validação do **campo link para cursos online**
+- Comportamento do sistema quando **dados inválidos são inseridos**
 
- Bugs encontrados
-As falhas e comportamentos atípicos identificados durante os testes foram documentados detalhadamente no arquivo:
---> bugs.md
+Esses pontos foram utilizados como base para a criação dos cenários de teste.
+
+---
+
+# Estratégia de testes
+
+Para avaliar o comportamento da aplicação, foram considerados diferentes tipos de cenários:
+
+### Fluxos positivos (Happy Path)
+Testes para validar se o sistema funciona corretamente quando o usuário segue o fluxo esperado.
+
+Exemplo:
+- Cadastro de curso com todos os dados válidos.
+
+### Fluxos negativos
+Testes com dados inválidos ou incompletos para verificar como o sistema se comporta.
+
+Exemplos:
+- Campo nome vazio
+- Cadastro com todos os campos em branco
+- Inserção de caracteres inválidos
+
+### Validação de campos
+Testes focados em garantir que os campos aceitam apenas dados válidos.
+
+Exemplos:
+- Campo de vagas aceitando apenas números
+- Validação de URL para cursos online
+
+### Testes exploratórios
+Exploração livre da aplicação para identificar comportamentos inesperados ou inconsistências.
+
+---
+
+# Cenários de teste executados
+
+Foram criados e executados **8 cenários de teste**:
+
+| ID | Cenário |
+|----|--------|
+| CT01 | Cadastro de curso com dados válidos |
+| CT02 | Cadastro de curso com campo nome vazio |
+| CT03 | Cadastro com data final menor que data inicial |
+| CT04 | Validação de caracteres especiais no campo número de vagas |
+| CT05 | Exclusão de curso cadastrado |
+| CT06 | Cadastro de curso sem preencher descrição |
+| CT07 | Cadastro de curso com todos os campos em branco |
+| CT08 | Cadastro de curso modalidade online com link inválido |
+
+---
+
+# Casos de teste detalhados
+
+Os casos de teste completos com:
+
+- passos de execução
+- resultado esperado
+- resultado obtido
+- status
+- severidade
+
+estão documentados na planilha abaixo:
+
+➡️ **Planilha de Casos de Teste**  
+https://docs.google.com/spreadsheets/d/1V9LGeF2nwWGW8TiUH-0rsVKNB_t6MTf0I_wsxjBASCA/edit?usp=sharing
+
+---
+
+# Evidências de execução
+
+As evidências da execução dos testes (prints e gravações de tela) estão organizadas por caso de teste no link abaixo:
+
+➡️ **Evidências dos Testes**  
+https://drive.google.com/drive/folders/1T1NUWuYRhEJPHQHKN2PCp42qnoNczNcj?usp=sharing
+
+---
+
+# Resultados da execução
+
+Dos **8 cenários executados**:
+
+- **1 cenário passou**
+- **7 cenários falharam**
+
+Os principais problemas encontrados estão relacionados a:
+
+- Falta de validação de campos obrigatórios
+- Falta de validação de dados
+- Problemas na exclusão de cursos
+- Ausência de validação de URL para cursos online
+
+---
+
+# Bugs encontrados
+
+Todos os bugs identificados durante a execução dos testes foram documentados no arquivo abaixo:
+
+➡️ **bugs.md**
